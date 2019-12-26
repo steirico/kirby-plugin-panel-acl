@@ -3,6 +3,17 @@
 @include_once __DIR__ . '/vendor/autoload.php';
 
 Kirby::plugin('steirico/kirby-plugin-panel-acl', [
+    'api' => [
+        'routes' => [
+            [
+                'pattern' => 'panel-acl',
+                'action'  => function () {
+                    $pages = site()->pages();
+                    return $pages;
+                }
+            ]
+        ]
+    ],
     'blueprints' => [
         'users/panel-acl' => [
             'title'    => 'Panel ACLs',
