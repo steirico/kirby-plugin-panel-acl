@@ -1,0 +1,16 @@
+panel-acl:
+  columns:
+    main-col:
+      sections:
+        access:
+          type: fields
+          fields:
+            toRelatedPages:
+              type: toggle
+              label: Grant Access to related Pages
+              text:
+                - No, don't grant access to related pages
+                - Yes, grant access to related pages
+            toSpecificPages:
+              type: pages
+              label: Grant Access to specific Pages

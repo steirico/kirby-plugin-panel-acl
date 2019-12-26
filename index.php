@@ -4,10 +4,15 @@
 
 Kirby::plugin('steirico/kirby-plugin-panel-acl', [
     'blueprints' => [
-        'users/my-role' => [
-            'title'    => 'MyRole',
-            'name'    => 'MyRole',
-            'description'    => 'MyRole',
+        'users/panel-acl' => [
+            'title'    => 'Panel ACLs',
+            'name'    => 'panel-acl',
+            'description'    => 'User-based ACLs for the Kirby Panel',
+            'extends' => 'users/default',
+            'tabs' => (function(){
+                $re = Kirby\Data\Data::read(__DIR__ . '/blueprints/tabs/panel-acl.yml', 'yaml');
+                return $re;
+            })(),
             'permissions' => [
                 'access' => [
                     'users' => false,
