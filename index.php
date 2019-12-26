@@ -26,7 +26,7 @@ Kirby::plugin('steirico/kirby-plugin-panel-acl', [
                 ],
                 'pages' => [
                     'changeSlug'     => function(){ 
-                        return true;
+                        return false;
                     },
                     'changeStatus'   => false,
                     'changeTemplate' => false,
@@ -41,6 +41,32 @@ Kirby::plugin('steirico/kirby-plugin-panel-acl', [
                     'sort'           => false,
                     'update'         => false
                 ],
+                'files' => [
+                    'changeName' => false,
+                    'create'     => false,
+                    'delete'     => false,
+                    'replace'    => false,
+                    'update'     => false
+                ],
+                'users' => [
+                    'changeEmail'    => false,
+                    'changeLanguage' => false,
+                    'changeName'     => false,
+                    'changePassword' => false,
+                    'changeRole'     => false,
+                    'create'         => false,
+                    'delete'         => false,
+                    'update'         => false
+                ],
+                'user' => [
+                    'changeEmail'    => false,
+                    'changeLanguage' => true,
+                    'changeName'     => false,
+                    'changePassword' => true,
+                    'changeRole'     => true,
+                    'delete'         => false,
+                    'update'         => false
+                ]
             ]
         ]
     ]
