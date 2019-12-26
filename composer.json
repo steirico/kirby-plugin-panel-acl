@@ -1,0 +1,33 @@
+
+{
+    "name": "steirico/kirby-plugin-panel-acl",
+    "description": "Sophisticated user-based ACLs for the Kirby Panel",
+    "version": "0.0.0-dev",
+    "type": "kirby-plugin",
+    "license": "MIT",
+    "keywords": [
+        "kirby3",
+        "plugin",
+        "panel",
+        "acl"
+    ],
+    "authors": [
+        {
+            "name": "Rico Steiner",
+            "email": "rico@vweb.ch",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "getkirby/composer-installer": "^1.1"
+    },
+    "autoload": {
+        "exclude-from-classmap": ["../../../kirby/src/Cms/Permissions.php"],
+        "files": [
+            "src/Cms/Permissions.php"
+        ]
+    },
+    "config": {
+        "optimize-autoloader": true
+    }
+}
