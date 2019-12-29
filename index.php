@@ -6,10 +6,29 @@ Kirby::plugin('steirico/kirby-plugin-panel-acl', [
     'api' => [
         'routes' => [
             [
-                'pattern' => 'panel-acl',
+                'pattern' => 'panel-acl/pages',
                 'action'  => function () {
                     $pages = site()->pages();
-                    return $pages;
+                    $resultPages = $pages->toArray(function($page){
+                        $image = $page->image();
+                        $image = $image ? $image->thumb(76)->url() : '';
+
+                        return [
+                            'image' => [
+                                'url' => $image,
+                                'cover' => true
+                            ],
+                            'icon' => [
+                                'type' => $page->blueprint()->icon(),
+                                'back' => 'pattern'
+                            ],
+                            'text' => $page->title()->value(),
+                            'link' => '/pages/'.$page->id()
+                        ];
+
+                    });
+                    $res = $resultPages;
+                    return $res;
                 }
             ]
         ]

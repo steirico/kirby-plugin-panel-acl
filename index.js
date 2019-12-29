@@ -8903,7 +8903,23 @@ exports.default = void 0;
 //
 //
 var _default = {
-  /** put your view logic here **/
+  data: function data() {
+    return {
+      pages: []
+    };
+  },
+  created: function created() {
+    this.load();
+  },
+  methods: {
+    load: function load() {
+      var _this = this;
+
+      this.$api.get("panel-acl/pages").then(function (pages) {
+        _this.pages = pages;
+      });
+    }
+  }
 };
 exports.default = _default;
         var $7338ea = exports.default || module.exports;
@@ -8920,10 +8936,11 @@ exports.default = _default;
   var _c = _vm._self._c || _h
   return _c(
     "k-view",
-    { staticClass: "k-test-view" },
+    { staticClass: "k-acl-pages-view" },
     [
-      _c("k-header", [_vm._v("Example")]),
-      _vm._v("\n  This is your custom view\n")
+      _c("k-header", [_vm._v("Your Pages")]),
+      _vm._v(" "),
+      _c("k-collection", { attrs: { layout: "list", items: _vm.pages } })
     ],
     1
   )
@@ -8973,7 +8990,7 @@ panel.plugin("steirico/kirby-plugin-panel-acl", {
     'acl-pages': {
       component: _View.default,
       icon: "check",
-      label: "Your Pages"
+      label: "Delegated Pages"
     }
   }
 });
@@ -9005,7 +9022,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62472" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52093" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

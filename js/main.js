@@ -5,7 +5,7 @@ panel.plugin("steirico/kirby-plugin-panel-acl", {
     'acl-pages': {
       component: View,
       icon: "check",
-      label: "Your Pages"
+      label: "Delegated Pages"
     }
   }
 });
