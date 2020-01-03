@@ -51,25 +51,21 @@ Kirby::plugin('steirico/kirby-plugin-panel-acl', [
                     'panel' => true
                 ],
                 'site' => [
-                    'changeTitle' => false,
-                    'update'      => false
+                    'changeTitle' => Closure::fromCallable("PanelAcl::canAccessSite"),
+                    'update' => Closure::fromCallable("PanelAcl::canAccessSite")
                 ],
                 'pages' => [
-                    'changeSlug'     => function(){ 
-                        return false;
-                    },
-                    'changeStatus'   => false,
-                    'changeTemplate' => false,
-                    'changeTitle'    => false,
-                    'create'         => false,
-                    'delete'         => false,
-                    'duplicate'      => false,
-                    'preview'        => false,
-                    'read'           => function($page, $user){
-                        return true;
-                    },
-                    'sort'           => false,
-                    'update'         => false
+                    'changeSlug'     => Closure::fromCallable("PanelAcl::canAccessPage"),
+                    'changeStatus'   => Closure::fromCallable("PanelAcl::canAccessPage"),
+                    'changeTemplate' => Closure::fromCallable("PanelAcl::canAccessPage"),
+                    'changeTitle'    => Closure::fromCallable("PanelAcl::canAccessPage"),
+                    'create'         => Closure::fromCallable("PanelAcl::canAccessPage"),
+                    'delete'         => Closure::fromCallable("PanelAcl::canAccessPage"),
+                    'duplicate'      => Closure::fromCallable("PanelAcl::canAccessPage"),
+                    'preview'        => Closure::fromCallable("PanelAcl::canAccessPage"),
+                    'read'           => true,
+                    'sort'           => Closure::fromCallable("PanelAcl::canAccessPage"),
+                    'update'         => Closure::fromCallable("PanelAcl::canAccessPage")
                 ],
                 'files' => [
                     'changeName' => false,

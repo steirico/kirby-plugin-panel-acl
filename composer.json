@@ -24,7 +24,8 @@
     "autoload": {
         "exclude-from-classmap": ["../../../kirby/src/Cms/Permissions.php"],
         "files": [
-            "src/Cms/Permissions.php"
+            "src/Cms/Permissions.php",
+            "src/PanelAcl.php"
         ]
     },
     "config": {
