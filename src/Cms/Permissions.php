@@ -100,7 +100,9 @@ class Permissions
 
         $permission = $this->actions[$category][$action];
         if (is_callable($permission)){
-            return $permission(kirby()->page(), kirby()->user());
+            $uriData = kirby()->request()->url()->path()->data();
+            $page = $uriData[1] == "pages" ? kirby()->api()->page($uriData[2]) : site(); 
+            return $permission($page, kirby()->user());
         }
 
         return $permission;
