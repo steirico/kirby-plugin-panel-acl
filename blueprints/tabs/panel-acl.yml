@@ -14,3 +14,9 @@ panel-acl:
             toSpecificPages:
               type: pages
               label: Grant Access to specific Pages
+            toSite:
+              type: toggle
+              label: Grant Access to Site
+              text:
+                - No, don't grant access to site
+                - Yes, grant access to site
