@@ -51,21 +51,21 @@ Kirby::plugin('steirico/kirby-plugin-panel-acl', [
                     'panel' => true
                 ],
                 'site' => [
-                    'changeTitle' => Closure::fromCallable("PanelAcl::canAccessSite"),
-                    'update' => Closure::fromCallable("PanelAcl::canAccessSite")
+                    'changeTitle' => PanelAcl::canAccessSiteClosure("changeTitle"),
+                    'update' => PanelAcl::canAccessSiteClosure("update")
                 ],
                 'pages' => [
-                    'changeSlug'     => Closure::fromCallable("PanelAcl::canAccessPage"),
-                    'changeStatus'   => Closure::fromCallable("PanelAcl::canAccessPage"),
-                    'changeTemplate' => Closure::fromCallable("PanelAcl::canAccessPage"),
-                    'changeTitle'    => Closure::fromCallable("PanelAcl::canAccessPage"),
-                    'create'         => Closure::fromCallable("PanelAcl::canAccessPage"),
-                    'delete'         => Closure::fromCallable("PanelAcl::canAccessPage"),
-                    'duplicate'      => Closure::fromCallable("PanelAcl::canAccessPage"),
-                    'preview'        => Closure::fromCallable("PanelAcl::canAccessPage"),
+                    'changeSlug'     => PanelAcl::canAccessPageClosure("changeSlug"),
+                    'changeStatus'   => PanelAcl::canAccessPageClosure("changeStatus"),
+                    'changeTemplate' => PanelAcl::canAccessPageClosure("changeTemplate"),
+                    'changeTitle'    => PanelAcl::canAccessPageClosure("changeTitle"),
+                    'create'         => PanelAcl::canAccessPageClosure("create"),
+                    'delete'         => PanelAcl::canAccessPageClosure("delete"),
+                    'duplicate'      => PanelAcl::canAccessPageClosure("duplicate"),
+                    'preview'        => PanelAcl::canAccessPageClosure("preview"),
                     'read'           => true,
-                    'sort'           => Closure::fromCallable("PanelAcl::canAccessPage"),
-                    'update'         => Closure::fromCallable("PanelAcl::canAccessPage")
+                    'sort'           => PanelAcl::canAccessPageClosure("sort"),
+                    'update'         => PanelAcl::canAccessPageClosure("update")
                 ],
                 'files' => [
                     'changeName' => false,
