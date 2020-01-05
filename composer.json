@@ -22,9 +22,13 @@
         "getkirby/composer-installer": "^1.1"
     },
     "autoload": {
-        "exclude-from-classmap": ["../../../kirby/src/Cms/Permissions.php"],
+        "exclude-from-classmap": [
+            "../../../kirby/src/Cms/Permissions.php",
+            "../../../kirby/src/Cms/ModelPermissions.php"
+        ],
         "files": [
             "src/Cms/Permissions.php",
+            "src/Cms/ModelPermissions.php",
             "src/PanelAcl.php"
         ]
     },
