@@ -9,14 +9,18 @@ class PanelAcl {
         $userContent = $user->content();
         $toSpecificPages = $userContent->toSpecificPages()->toPages();
 
-        if($toSpecificPages->findByKey($page->id())){
-            return true;
+        if(is_a($toSpecificPages, "Kirby\Cms\Pages")){
+            if($toSpecificPages->findByKey($page->id())){
+                return true;
+            }
         }
 
         if($userContent->toRelatedPages()->toBool()){
             $pageUsers = $page->panelAclPageUsers();
-            if($pageUsers->findByKey($user->id())){
-                return true;
+            if(is_a($pageUsers, "Kirby\Cms\Users")) {
+                if($pageUsers->findByKey($user->id())){
+                    return true;
+                }
             }
         }
 
