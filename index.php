@@ -8,7 +8,38 @@ Kirby::plugin('steirico/kirby-plugin-panel-acl', [
             [
                 'pattern' => 'panel-acl/pages',
                 'action'  => function () {
-                    $pages = site()->pages();
+                    $user = kirby()->user();
+                    $pages = new Kirby\Cms\Pages();
+
+                    $userContent = $user->content();
+                    $toSpecificPages = $userContent->toSpecificPages()->toPages();
+                    if(is_a($toSpecificPages, "Kirby\Cms\Pages")){
+                        $pages->add($toSpecificPages);
+                    }
+
+                    $lastAllowedId = '';
+                    $toRelatedPages = site()->index()->filter(function($page) use ($user, &$lastAllowedId){
+                        $pageUsers = $page->panelAclPageUsers();
+                        if(is_a($pageUsers, "Kirby\Cms\Users")) {
+                            if(!empty($lastAllowedId) && strpos($page->id(), $lastAllowedId) === 0){
+                                return false;
+                            }
+                            if($pageUsers->findByKey($user->id())){
+                                $lastAllowedId = $page->id();
+                                return true;
+                            } else {
+                                $lastAllowedId = '';
+                                return false;
+                            }
+                        } else {
+                            return false;
+                        }
+                    });
+                    if(is_a($toRelatedPages, "Kirby\Cms\Pages")){
+                        $pages->add($toRelatedPages);
+                    }
+
+
                     $resultPages = $pages->toArray(function($page){
                         $image = $page->image();
                         $image = $image ? $image->thumb(76)->url() : '';
@@ -23,7 +54,7 @@ Kirby::plugin('steirico/kirby-plugin-panel-acl', [
                                 'back' => 'pattern'
                             ],
                             'text' => $page->title()->value(),
-                            'link' => '/pages/'.$page->id()
+                            'link' => '/pages/'.$page->panelId()
                         ];
 
                     });
