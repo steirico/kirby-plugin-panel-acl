@@ -78,6 +78,7 @@ Kirby::plugin('steirico/kirby-plugin-panel-acl', [
                 'access' => [
                     'users' => false,
                     'site' => true,
+                    'acl-pages' => true,
                     'settings' => false,
                     'panel' => true
                 ],
