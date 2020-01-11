@@ -8,6 +8,7 @@ panel-acl:
             toRelatedPages:
               type: toggle
               label: Grant Access to related Pages
+              default: true
               text:
                 - No, don't grant access to related pages
                 - Yes, grant access to related pages
@@ -17,6 +18,7 @@ panel-acl:
             toSite:
               type: toggle
               label: Grant Access to Site
+              default: false
               text:
                 - No, don't grant access to site
                 - Yes, grant access to site
