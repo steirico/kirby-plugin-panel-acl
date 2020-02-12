@@ -38,4 +38,9 @@ class PanelAcl {
             return false;
         };
     }
+
+    public static function canAccessFileClosure($action){
+
+        return PanelAcl::canAccessPageClosure($action);
+    }
 }
