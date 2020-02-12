@@ -18,6 +18,12 @@ class PanelAcl {
                 if($toSpecificPages->findByKey($page->id())){
                     return true;
                 }
+
+                foreach($toSpecificPages as $parentPage){
+                    if ($page->isDescendantOf($parentPage)) {
+                        return true;
+                    }
+                }
             }
 
             if($userContent->toRelatedPages()->toBool()){
