@@ -103,6 +103,7 @@ Kirby::plugin('steirico/kirby-plugin-panel-acl', [
                     'changeName' => PanelAcl::canAccessFileClosure("changeName"),
                     'create'     => PanelAcl::canAccessFileClosure("create"),
                     'delete'     => PanelAcl::canAccessFileClosure("delete"),
+                    'read'       => PanelAcl::canAccessFileClosure("read"),
                     'replace'    => PanelAcl::canAccessFileClosure("replace"),
                     'update'     => PanelAcl::canAccessFileClosure("update")
                 ],
