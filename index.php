@@ -64,6 +64,9 @@ Kirby::plugin('steirico/kirby-plugin-panel-acl', [
             ]
         ]
     ],
+    'userModels' => [
+        'panel-acl' => 'PanelAclUser'
+    ],
     'blueprints' => [
         'users/panel-acl' => [
             'title'    => 'Panel ACLs',
@@ -83,29 +86,29 @@ Kirby::plugin('steirico/kirby-plugin-panel-acl', [
                     'panel' => true
                 ],
                 'site' => [
-                    'changeTitle' => PanelAcl::canAccessSiteClosure("changeTitle"),
-                    'update' => PanelAcl::canAccessSiteClosure("update")
+                    'changeTitle'   => "user.canAccessSite('changeTitle', site)",
+                    'update'        => "user.canAccessSite('update', site)"
                 ],
                 'pages' => [
-                    'changeSlug'     => PanelAcl::canAccessPageClosure("changeSlug"),
-                    'changeStatus'   => PanelAcl::canAccessPageClosure("changeStatus"),
-                    'changeTemplate' => PanelAcl::canAccessPageClosure("changeTemplate"),
-                    'changeTitle'    => PanelAcl::canAccessPageClosure("changeTitle"),
-                    'create'         => PanelAcl::canAccessPageClosure("create"),
-                    'delete'         => PanelAcl::canAccessPageClosure("delete"),
-                    'duplicate'      => PanelAcl::canAccessPageClosure("duplicate"),
-                    'preview'        => PanelAcl::canAccessPageClosure("preview"),
+                    'changeSlug'     => "user.canAccessPage('changeSlug', page)",
+                    'changeStatus'   => "user.canAccessPage('changeStatus', page)",
+                    'changeTemplate' => "user.canAccessPage('changeTemplate', page)",
+                    'changeTitle'    => "user.canAccessPage('changeTitle', page)",
+                    'create'         => "user.canAccessPage('create', page)",
+                    'delete'         => "user.canAccessPage('delete', page)",
+                    'duplicate'      => "user.canAccessPage('duplicate', page)",
+                    'preview'        => "user.canAccessPage('preview', page)",
                     'read'           => true,
-                    'sort'           => PanelAcl::canAccessPageClosure("sort"),
-                    'update'         => PanelAcl::canAccessPageClosure("update")
+                    'sort'           => "user.canAccessPage('sort', page)",
+                    'update'         => "user.canAccessPage('update', page)"
                 ],
                 'files' => [
-                    'changeName' => PanelAcl::canAccessFileClosure("changeName"),
-                    'create'     => PanelAcl::canAccessFileClosure("create"),
-                    'delete'     => PanelAcl::canAccessFileClosure("delete"),
-                    'read'       => PanelAcl::canAccessFileClosure("read"),
-                    'replace'    => PanelAcl::canAccessFileClosure("replace"),
-                    'update'     => PanelAcl::canAccessFileClosure("update")
+                    'changeName' => "user.canAccessFile('changeName', file)",
+                    'create'     => "user.canAccessFile('create', file)",
+                    'delete'     => "user.canAccessFile('delete', file)",
+                    'read'       => "user.canAccessFile('read', file)",
+                    'replace'    => "user.canAccessFile('replace', file)",
+                    'update'     => "user.canAccessFile('update', file)"
                 ],
                 'users' => [
                     'changeEmail'    => false,

@@ -3,6 +3,7 @@
 namespace Kirby\Cms;
 
 use Kirby\Exception\InvalidArgumentException;
+use Kirby\Toolkit\Str;
 
 /**
  * Handles permission definition in each user
@@ -111,13 +112,34 @@ class Permissions
         }
 
         $permission = $this->actions[$category][$action];
-        if (is_callable($permission)){
-            $uriData = kirby()->request()->url()->path()->data();
-            $page = $uriData[1] == "pages" ? kirby()->api()->page($uriData[2]) : site(); 
-            return $permission($page, kirby()->user());
+        if (is_bool($permission)) {
+            return $permission;
         }
 
-        return $permission;
+        if (is_string($permission)) {
+            $kirby = kirby();
+            $data = [
+                'kirby' => $kirby,
+                'site'  => site(),
+                'users' => $kirby->users(),
+                'user'  => $kirby->user()
+            ];
+    
+            $uriData = $kirby->request()->url()->path()->data();
+            if ($uriData[1] == "pages") {
+                $data['page'] = $kirby->api()->page($uriData[2]);
+            } else {
+                $data['page'] = null;
+            }
+    
+            $p = Str::query($permission, $data);
+            if(is_bool($p)) {
+                return $p;
+            } else {
+                return false;
+            }
+        }
+        return false;
     }
 
     protected function hasAction(string $category, string $action): bool
